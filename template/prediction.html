@@ -1,47 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Prediction</title>
-
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="../static/fonts/material-icon/css/material-design-iconic-font.min.css">
-    <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-
-    <div class="main">
-
-        <!-- Prediction status -->
-        <section class="sign-in">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src="../static/images/signin-image.jpg" alt="sing up image"></figure>
-                    </div>
-
-                    <div class="signin-form">
-                        <h2 class="form-title">Prediction</h2>
-                        <a>The loan approval is obtained using the machine learning model of <b>XGBoost</b>. It has the accuracy of around 83%. To obtain this model performance, we have acquired the training data from a public dataset library.</a>
-                        </br></br>
-                        {{ prediction }}
-                        </br></br>
-                        <div class="form-group">
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>
-                                <a href="{{url_for('home')}}" class="term-service">Back to Home</a>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-</body>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Credit Compass eligibility result"><title>Credit Compass | Assessment result</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="result-page"><div class="result-shell"><header class="result-topbar"><a class="brand brand--dark" href="{{ url_for('home') }}"><span class="brand-mark">CC</span><span>Credit Compass<small>Decision intelligence</small></span></a><span class="live-pill live-pill--dark"><span class="status-dot"></span> Assessment complete</span></header><main class="result-card {% if 'approved' in prediction|lower %}result-card--positive{% else %}result-card--negative{% endif %}"><div class="result-icon">{% if 'approved' in prediction|lower %}&#10003;{% else %}!{% endif %}</div><span class="eyebrow">Your eligibility signal</span><h1>{{ prediction }}</h1><p class="result-summary">This result was generated from the information you provided using our machine learning assessment model. Use it as an early planning signal, not a final lending decision.</p><div class="result-details"><div><span>Model</span><strong>XGBoost classifier</strong></div><div><span>Confidence basis</span><strong>Applicant profile + finances</strong></div><div><span>Next step</span><strong>Review with a lender</strong></div></div><div class="result-actions"><a class="primary-button" href="{{ url_for('home') }}">Start another assessment <span aria-hidden="true">&#8594;</span></a><a class="text-button" href="{{ url_for('home') }}">Return to dashboard</a></div></main><footer class="workspace-footer workspace-footer--center"><span>Credit Compass</span><span>For guidance only. This is not a lending decision.</span></footer></div></body>
 </html>

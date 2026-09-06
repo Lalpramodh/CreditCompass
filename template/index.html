@@ -3,126 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loan Approval Prediction</title>
-
-    <link rel="stylesheet" href="../static/fonts/material-icon/css/material-design-iconic-font.min.css">
-    <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
-
-    <link rel="stylesheet" href="../static/css/style.css">
+    <meta name="description" content="Credit Compass loan eligibility assessment workspace">
+    <title>Credit Compass | Eligibility assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-
-    <div class="main">
-
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Loan Approval</h2>
-                        <form action="/prediction" method="POST" class="register-form" id="register-form">
-                            <h3>Identity</h3>
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="birthdate"><i class="zmdi zmdi-calendar"></i></label>
-                                <input type="date" name="birthdate" id="birthdate" placeholder="Your Birthdate" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="gender"><i class="zmdi zmdi-accounts"></i></label>
-                                <select name="gender" id="gender" placeholder="Your Gender" required>
-                                    <option value="" disabled selected>Your Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="education"><i class="zmdi zmdi-book"></i></label>
-                                <select name="education" id="education" placeholder="Your Education" required>
-                                    <option value="" disabled selected>Your Education</option>
-                                    <option value="1">Not Graduate</option>
-                                    <option value="0">Graduate</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="self_employed"><i class="zmdi zmdi-case"></i></label>
-                                <select name="self_employed" id="self_employed" placeholder="Are You Employed?" required>
-                                    <option value="" disabled selected>Are You Employed?</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="marital_status"><i class="zmdi zmdi-accounts-alt"></i></label>
-                                <select name="marital_status" id="marital_status" placeholder="Your Marital Status" required>
-                                    <option value="" disabled selected>Your Marital Status</option>
-                                    <option value="0">Single</option>
-                                    <option value="1">Married</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="dependents"><i class="zmdi zmdi-accounts-add"></i></label>
-                                <select name="dependents" id="dependents" placeholder="Number of Dependents" required>
-                                    <option value="" disabled selected>Number of Dependents</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3+">3+</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="property_area"><i class="zmdi zmdi-home"></i></label>
-                                <select name="property_area" id="property_area" placeholder="Your Property Area" required>
-                                    <option value="" disabled selected>Your Property Area</option>
-                                    <option value="Urban">Urban</option>
-                                    <option value="Semiurban">Semi-Urban</option>
-                                    <option value="Rural">Rural</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="applicant_income"><i class="zmdi zmdi-money"></i></label>
-                                <input type="number" min="0" name="applicant_income" placeholder="Applicant Income per Month (USD)" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="coapplicant_income"><i class="zmdi zmdi-money"></i></label>
-                                <input type="number" min="0" name="coapplicant_income" placeholder="Co-Applicant Income per Month (USD)" required/>
-                            </div>
-                            <h3>Loan and Credit Description</h3>
-                            <div class="form-group">
-                                <label for="loan_amount"><i class="zmdi zmdi-money"></i></label>
-                                <input type="number" min="0" name="loan_amount" placeholder="Your Loan Amount (USD)" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="loan_term"><i class="zmdi zmdi-calendar-check"></i></label>
-                                <input type="number" min="0" name="loan_term" placeholder="Your Loan Term (days)" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="credit_history"><i class="zmdi zmdi-calendar-check"></i></label>
-                                <select name="credit_history" id="credit_history" placeholder="Your Credit History" required>
-                                    <option value="" disabled selected>Your Credit History</option>
-                                    <option value="1">All Debts Paid</option>
-                                    <option value="0">Not paid</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Check Status"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="../static/images/signup-image.jpg" alt="sing up image"></figure>
-                    </div>
-                </div>
-            </div>
-        </section>
-    
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="{{ url_for('home') }}" aria-label="Credit Compass home"><span class="brand-mark">CC</span><span>Credit Compass<small>Decision intelligence</small></span></a>
+            <div class="sidebar-copy"><span class="eyebrow">Applicant workspace</span><h1>Make your next move with clarity.</h1><p>Get a fast, data-informed view of your loan eligibility before you apply.</p></div>
+            <div class="sidebar-note"><span class="note-icon">i</span><div><strong>Private by design</strong><p>Your inputs are used for this assessment only.</p></div></div>
+            <div class="sidebar-footer"><span class="status-dot"></span> Assessment engine online</div>
+        </aside>
+        <main class="workspace">
+            <header class="topbar"><div><span class="eyebrow">New assessment</span><h2>Loan eligibility check</h2></div><div class="topbar-meta"><span class="live-pill"><span class="status-dot"></span> Live model</span><span class="model-label">XGBoost v1.0</span></div></header>
+            <div class="progress-row" aria-label="Assessment progress"><div class="progress-step is-active"><span>01</span><b>Profile</b></div><div class="progress-line"></div><div class="progress-step"><span>02</span><b>Finances</b></div><div class="progress-line"></div><div class="progress-step"><span>03</span><b>Decision</b></div></div>
+            <form action="{{ url_for('predict') }}" method="POST" class="assessment-form" id="assessment-form">
+                <section class="form-section"><div class="section-heading"><div class="section-number">01</div><div><h3>Tell us about yourself</h3><p>A few personal details help us understand your application.</p></div></div><div class="field-grid field-grid--three">
+                    <label class="field field--wide"><span>Full name</span><input type="text" name="name" placeholder="e.g. Alex Morgan" autocomplete="name" required></label>
+                    <label class="field"><span>Date of birth</span><input type="date" name="birthdate" required></label>
+                    <label class="field"><span>Gender</span><select name="gender" required><option value="" disabled selected>Select gender</option><option value="1">Male</option><option value="0">Female</option></select></label>
+                    <label class="field"><span>Marital status</span><select name="marital_status" required><option value="" disabled selected>Select status</option><option value="0">Single</option><option value="1">Married</option></select></label>
+                    <label class="field"><span>Dependents</span><select name="dependents" required><option value="" disabled selected>Select number</option><option value="0">None</option><option value="1">1 dependent</option><option value="2">2 dependents</option><option value="3+">3+ dependents</option></select></label>
+                    <label class="field"><span>Education</span><select name="education" required><option value="" disabled selected>Select level</option><option value="0">Graduate</option><option value="1">Not graduate</option></select></label>
+                </div></section>
+                <section class="form-section"><div class="section-heading"><div class="section-number">02</div><div><h3>Financial snapshot</h3><p>Use your current monthly figures for a more relevant signal.</p></div></div><div class="field-grid field-grid--two">
+                    <label class="field"><span>Monthly applicant income <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="applicant_income" placeholder="4,500" required></div></label>
+                    <label class="field"><span>Monthly co-applicant income <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="coapplicant_income" placeholder="2,000" required></div></label>
+                    <label class="field"><span>Requested loan amount <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="loan_amount" placeholder="150,000" required></div></label>
+                    <label class="field"><span>Loan term <em>days</em></span><input type="number" min="1" name="loan_term" placeholder="360" required></label>
+                </div></section>
+                <section class="form-section form-section--last"><div class="section-heading"><div class="section-number">03</div><div><h3>Application context</h3><p>One last check before we run the assessment.</p></div></div><div class="field-grid field-grid--two">
+                    <label class="field"><span>Employment status</span><select name="self_employed" required><option value="" disabled selected>Select status</option><option value="0">Employed</option><option value="1">Self-employed</option></select></label>
+                    <label class="field"><span>Property area</span><select name="property_area" required><option value="" disabled selected>Select area</option><option value="Urban">Urban</option><option value="Semiurban">Semi-urban</option><option value="Rural">Rural</option></select></label>
+                    <label class="field"><span>Credit history</span><select name="credit_history" required><option value="" disabled selected>Select history</option><option value="1">All debts paid</option><option value="0">Outstanding history</option></select></label>
+                </div><label class="consent"><input type="checkbox" name="agree-term" required><span class="checkmark"></span><span>I confirm that the information provided is accurate to the best of my knowledge.</span></label></section>
+                <div class="form-actions"><p><span class="lock-icon">*</span> Your data stays within this assessment.</p><button type="submit" class="primary-button">Run eligibility check <span aria-hidden="true">&#8594;</span></button></div>
+            </form>
+            <footer class="workspace-footer"><span>Credit Compass</span><span>For guidance only. This is not a lending decision.</span></footer>
+        </main>
     </div>
-
 </body>
 </html>
