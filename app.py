@@ -55,6 +55,11 @@ def home():
     return render_template("index.html")
 
 
+@app.get("/apply")
+def apply():
+    return render_template("application.html")
+
+
 @app.get("/health")
 def health():
     return {"status": "healthy"}

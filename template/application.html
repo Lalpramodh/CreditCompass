@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your Credit Compass loan eligibility assessment.">
+    <title>Credit Compass | Start your assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="application-page">
+    <div class="application-shell">
+        <header class="application-nav"><a class="brand brand--dark" href="{{ url_for('home') }}"><span class="brand-mark">CC</span><span>Credit Compass<small>Financial clarity, first</small></span></a><a class="back-link" href="{{ url_for('home') }}">&#8592; Back to overview</a></header>
+        <main class="application-main">
+            <div class="application-intro"><span class="eyebrow">Personal assessment</span><h1>Let’s look at the full picture.</h1><p>Complete the fields below to receive an initial eligibility signal. Your answers are used only to generate this assessment.</p><div class="assessment-meta"><span><b>02</b> minutes</span><span><b>12</b> questions</span><span><b>0</b> accounts</span></div></div>
+            <div class="application-layout">
+                <aside class="application-aside"><div class="aside-progress"><span class="is-current">01</span><i></i><span>02</span><i></i><span>03</span></div><div><b>Profile & finances</b><p>We’ll ask about your household, income, loan request, and credit history.</p></div><div class="aside-privacy"><span>&#10003;</span><div><b>Private assessment</b><p>No sign-up, no credit check, no stored profile.</p></div></div></aside>
+                <form action="{{ url_for('predict') }}" method="POST" class="assessment-form assessment-form--light" id="assessment-form">
+                    <section class="form-section"><div class="section-heading"><div class="section-number">01</div><div><h2>About you</h2><p>A few personal details to set the context.</p></div></div><div class="field-grid field-grid--three">
+                        <label class="field field--wide"><span>Full name</span><input type="text" name="name" placeholder="e.g. Alex Morgan" autocomplete="name" required></label>
+                        <label class="field"><span>Date of birth</span><input type="date" name="birthdate" required></label>
+                        <label class="field"><span>Gender</span><select name="gender" required><option value="" disabled selected>Select gender</option><option value="1">Male</option><option value="0">Female</option></select></label>
+                        <label class="field"><span>Marital status</span><select name="marital_status" required><option value="" disabled selected>Select status</option><option value="0">Single</option><option value="1">Married</option></select></label>
+                        <label class="field"><span>Dependents</span><select name="dependents" required><option value="" disabled selected>Select number</option><option value="0">None</option><option value="1">1 dependent</option><option value="2">2 dependents</option><option value="3+">3+ dependents</option></select></label>
+                        <label class="field"><span>Education</span><select name="education" required><option value="" disabled selected>Select level</option><option value="0">Graduate</option><option value="1">Not graduate</option></select></label>
+                    </div></section>
+                    <section class="form-section"><div class="section-heading"><div class="section-number">02</div><div><h2>Financial context</h2><p>Use your current monthly figures for the clearest signal.</p></div></div><div class="field-grid field-grid--two">
+                        <label class="field"><span>Applicant income <em>USD / month</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="applicant_income" placeholder="4,500" required></div></label>
+                        <label class="field"><span>Co-applicant income <em>USD / month</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="coapplicant_income" placeholder="2,000" required></div></label>
+                        <label class="field"><span>Requested loan amount <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="loan_amount" placeholder="150,000" required></div></label>
+                        <label class="field"><span>Loan term <em>days</em></span><input type="number" min="1" name="loan_term" placeholder="360" required></label>
+                    </div></section>
+                    <section class="form-section form-section--last"><div class="section-heading"><div class="section-number">03</div><div><h2>Final details</h2><p>One last check before we generate your signal.</p></div></div><div class="field-grid field-grid--two">
+                        <label class="field"><span>Employment status</span><select name="self_employed" required><option value="" disabled selected>Select status</option><option value="0">Employed</option><option value="1">Self-employed</option></select></label>
+                        <label class="field"><span>Property area</span><select name="property_area" required><option value="" disabled selected>Select area</option><option value="Urban">Urban</option><option value="Semiurban">Semi-urban</option><option value="Rural">Rural</option></select></label>
+                        <label class="field"><span>Credit history</span><select name="credit_history" required><option value="" disabled selected>Select history</option><option value="1">All debts paid</option><option value="0">Outstanding history</option></select></label>
+                    </div><label class="consent"><input type="checkbox" name="agree-term" required><span class="checkmark"></span><span>I confirm that the information provided is accurate to the best of my knowledge.</span></label></section>
+                    <div class="form-actions"><p><span class="lock-icon">&#9679;</span> Secure, private, and account-free.</p><button type="submit" class="primary-button">Generate my signal <span>&#8594;</span></button></div>
+                </form>
+            </div>
+        </main>
+        <footer class="workspace-footer"><span>Credit Compass</span><span>For guidance only. This is not a lending decision.</span></footer>
+    </div>
+</body>
+</html>

@@ -3,45 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Credit Compass loan eligibility assessment workspace">
-    <title>Credit Compass | Eligibility assessment</title>
+    <meta name="description" content="Credit Compass helps you understand your loan eligibility before you apply.">
+    <title>Credit Compass | A clearer way to approach borrowing</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="app-shell">
-        <aside class="sidebar">
-            <a class="brand" href="{{ url_for('home') }}" aria-label="Credit Compass home"><span class="brand-mark">CC</span><span>Credit Compass<small>Decision intelligence</small></span></a>
-            <div class="sidebar-copy"><span class="eyebrow">Applicant workspace</span><h1>Make your next move with clarity.</h1><p>Get a fast, data-informed view of your loan eligibility before you apply.</p></div>
-            <div class="sidebar-note"><span class="note-icon">i</span><div><strong>Private by design</strong><p>Your inputs are used for this assessment only.</p></div></div>
-            <div class="sidebar-footer"><span class="status-dot"></span> Assessment engine online</div>
-        </aside>
-        <main class="workspace">
-            <header class="topbar"><div><span class="eyebrow">New assessment</span><h2>Loan eligibility check</h2></div><div class="topbar-meta"><span class="live-pill"><span class="status-dot"></span> Live model</span><span class="model-label">XGBoost v1.0</span></div></header>
-            <div class="progress-row" aria-label="Assessment progress"><div class="progress-step is-active"><span>01</span><b>Profile</b></div><div class="progress-line"></div><div class="progress-step"><span>02</span><b>Finances</b></div><div class="progress-line"></div><div class="progress-step"><span>03</span><b>Decision</b></div></div>
-            <form action="{{ url_for('predict') }}" method="POST" class="assessment-form" id="assessment-form">
-                <section class="form-section"><div class="section-heading"><div class="section-number">01</div><div><h3>Tell us about yourself</h3><p>A few personal details help us understand your application.</p></div></div><div class="field-grid field-grid--three">
-                    <label class="field field--wide"><span>Full name</span><input type="text" name="name" placeholder="e.g. Alex Morgan" autocomplete="name" required></label>
-                    <label class="field"><span>Date of birth</span><input type="date" name="birthdate" required></label>
-                    <label class="field"><span>Gender</span><select name="gender" required><option value="" disabled selected>Select gender</option><option value="1">Male</option><option value="0">Female</option></select></label>
-                    <label class="field"><span>Marital status</span><select name="marital_status" required><option value="" disabled selected>Select status</option><option value="0">Single</option><option value="1">Married</option></select></label>
-                    <label class="field"><span>Dependents</span><select name="dependents" required><option value="" disabled selected>Select number</option><option value="0">None</option><option value="1">1 dependent</option><option value="2">2 dependents</option><option value="3+">3+ dependents</option></select></label>
-                    <label class="field"><span>Education</span><select name="education" required><option value="" disabled selected>Select level</option><option value="0">Graduate</option><option value="1">Not graduate</option></select></label>
-                </div></section>
-                <section class="form-section"><div class="section-heading"><div class="section-number">02</div><div><h3>Financial snapshot</h3><p>Use your current monthly figures for a more relevant signal.</p></div></div><div class="field-grid field-grid--two">
-                    <label class="field"><span>Monthly applicant income <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="applicant_income" placeholder="4,500" required></div></label>
-                    <label class="field"><span>Monthly co-applicant income <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="coapplicant_income" placeholder="2,000" required></div></label>
-                    <label class="field"><span>Requested loan amount <em>USD</em></span><div class="input-prefix"><b>$</b><input type="number" min="0" name="loan_amount" placeholder="150,000" required></div></label>
-                    <label class="field"><span>Loan term <em>days</em></span><input type="number" min="1" name="loan_term" placeholder="360" required></label>
-                </div></section>
-                <section class="form-section form-section--last"><div class="section-heading"><div class="section-number">03</div><div><h3>Application context</h3><p>One last check before we run the assessment.</p></div></div><div class="field-grid field-grid--two">
-                    <label class="field"><span>Employment status</span><select name="self_employed" required><option value="" disabled selected>Select status</option><option value="0">Employed</option><option value="1">Self-employed</option></select></label>
-                    <label class="field"><span>Property area</span><select name="property_area" required><option value="" disabled selected>Select area</option><option value="Urban">Urban</option><option value="Semiurban">Semi-urban</option><option value="Rural">Rural</option></select></label>
-                    <label class="field"><span>Credit history</span><select name="credit_history" required><option value="" disabled selected>Select history</option><option value="1">All debts paid</option><option value="0">Outstanding history</option></select></label>
-                </div><label class="consent"><input type="checkbox" name="agree-term" required><span class="checkmark"></span><span>I confirm that the information provided is accurate to the best of my knowledge.</span></label></section>
-                <div class="form-actions"><p><span class="lock-icon">*</span> Your data stays within this assessment.</p><button type="submit" class="primary-button">Run eligibility check <span aria-hidden="true">&#8594;</span></button></div>
-            </form>
-            <footer class="workspace-footer"><span>Credit Compass</span><span>For guidance only. This is not a lending decision.</span></footer>
+<body class="landing-page">
+    <div class="landing-shell">
+        <nav class="site-nav">
+            <a class="brand brand--light" href="{{ url_for('home') }}"><span class="brand-mark">CC</span><span>Credit Compass<small>Financial clarity, first</small></span></a>
+            <div class="nav-links"><a href="#how-it-works">How it works</a><a href="#about-model">About the model</a><a class="nav-cta" href="{{ url_for('apply') }}">Start assessment <span>&#8594;</span></a></div>
+        </nav>
+        <main>
+            <section class="hero-section">
+                <div class="hero-copy"><span class="eyebrow eyebrow--light">A smarter starting point</span><h1>Borrow with a clearer picture.</h1><p>Credit Compass turns a few everyday financial details into a simple eligibility signal, so you can approach your next loan conversation with more confidence.</p><a class="hero-button" href="{{ url_for('apply') }}">Check my eligibility <span>&#8594;</span></a><div class="hero-note"><span class="mini-check">&#10003;</span><span>Takes about 2 minutes<br><b>No account required</b></span></div></div>
+                <div class="hero-visual" aria-label="Illustration of a positive credit assessment"><div class="orbit orbit--one"></div><div class="orbit orbit--two"></div><div class="signal-card"><div class="signal-card-top"><span>ELIGIBILITY SIGNAL</span><span class="signal-live"><i></i> LIVE</span></div><div class="score-ring"><div><strong>83</strong><small>/ 100</small></div></div><div class="signal-title">Strong position</div><div class="signal-caption">Based on profile and financial context</div><div class="signal-bars"><span><i style="width: 86%"></i></span><span><i style="width: 72%"></i></span><span><i style="width: 92%"></i></span></div></div><div class="floating-tag floating-tag--top"><span class="tag-icon">$</span><span><b>Financial profile</b><small>Ready to review</small></span></div><div class="floating-tag floating-tag--bottom"><span class="tag-icon tag-icon--mint">&#10003;</span><span><b>Private assessment</b><small>Your data stays yours</small></span></div></div>
+            </section>
+            <section class="trust-strip"><span>Built for better first decisions</span><div><b>01</b> Transparent inputs</div><div><b>02</b> Fast feedback</div><div><b>03</b> Explainable next step</div></section>
+            <section class="how-section" id="how-it-works"><div class="section-intro"><span class="eyebrow eyebrow--light">Simple by design</span><h2>From uncertainty to a useful next step.</h2><p>Credit Compass is designed to help you prepare, not make promises. See the signal, understand the context, then make a more informed decision.</p></div><div class="steps-grid"><article class="step-card"><span class="step-index">01</span><h3>Share the essentials</h3><p>Tell us about your profile, income, requested amount, and credit history.</p><span class="step-arrow">&#8599;</span></article><article class="step-card step-card--featured"><span class="step-index">02</span><h3>We read the pattern</h3><p>An XGBoost classification model compares your inputs against learned lending patterns.</p><span class="step-arrow">&#8599;</span></article><article class="step-card"><span class="step-index">03</span><h3>Plan your next move</h3><p>Use your result as an early signal before speaking with a lending professional.</p><span class="step-arrow">&#8599;</span></article></div></section>
+            <section class="model-section" id="about-model"><div><span class="eyebrow">Responsible by default</span><h2>Useful guidance.<br><em>Not a final decision.</em></h2></div><div class="model-copy"><p>Our model provides an initial perspective using the information you share. It does not replace a lender's review, underwriting, or a formal application.</p><a href="{{ url_for('apply') }}" class="inline-link">See my eligibility signal <span>&#8594;</span></a></div></section>
         </main>
+        <footer class="landing-footer"><span class="brand-wordmark">CREDIT COMPASS</span><span>For guidance only. This is not a lending decision.</span><span>© 2026</span></footer>
     </div>
 </body>
 </html>
